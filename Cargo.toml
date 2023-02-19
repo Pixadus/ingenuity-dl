@@ -1,0 +1,16 @@
+[package]
+name = "ingenuity-dl"
+version = "0.1.0"
+authors = ["Parker Lamb"]
+description = "Automatically download images from the Mars Ingenuity helicopter and compile them into a video."
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.69"
+clap = "2.33.3"
+console = "0.15.5"
+indicatif = "0.17.3"
+reqwest = { version = "0.11.14", features = ["blocking", "json"] }
+serde_json = "1.0.93"
