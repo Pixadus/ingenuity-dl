@@ -3,8 +3,6 @@
 // Date: 2.18.23
 // Description: Main control file for ingenutiy-dl
 
-extern crate reqwest;
-use std::process::ExitCode;
 use anyhow::Result;
 
 mod input;
@@ -14,14 +12,14 @@ fn main() -> Result<()> {
     // 1. Get application CLI arguments
     let arguments = input::get_args();
 
-    // 2. Retrieve a list of images from the net for the given Sol
-    let json = functions::get_json(&arguments)?;
+    // 2. Retrieve a list of images from https://mars.nasa.gov/ for the given sol
+    let image_list = functions::get_images(&arguments)?;
 
     // 3. Download images to a temporary directory
+    let images = functions::download_images(image_list)?;
 
-    // 4. Compile images into video 
-
-    // 5. Delete images afterwards
+    // 4. Compile images into a GIF 
+    functions::compile_gif(images, &arguments)?;
 
     Ok(())
 }
