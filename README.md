@@ -3,6 +3,8 @@
 
 <p align="center">
 <img align="center" src="docs/sol-403.gif">
+</p>
+<p align="center">
 <em>gif of the sol 403 flight</em>
 </p>
 
