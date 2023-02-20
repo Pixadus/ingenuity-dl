@@ -5,6 +5,10 @@ authors = ["Parker Lamb"]
 description = "Automatically download images from the Mars Ingenuity helicopter and compile them into a video."
 edition = "2021"
 
+exclude = [
+    "docs/*"
+]
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
