@@ -1,7 +1,7 @@
 # Ingenuity-DL
 > Automatically download images from the Mars Ingenuity helicopter and compile them into a video.
 
-<img src="docs/sol-403.gif">
+<img align="center" src="docs/sol-403.gif">
 <p align="center">
 <em>gif of the sol 403 flight</em>
 </p>
