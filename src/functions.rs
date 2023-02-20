@@ -7,9 +7,6 @@ use indicatif::{ProgressBar, ProgressState, ProgressStyle};
 use anyhow::{anyhow, Result};
 use std::io::Write;
 use bytes::Bytes;
-use std::sync::{Arc, Mutex};
-use tokio::runtime::Builder;
-use futures::stream::StreamExt;
 use std::fs::File;
 use std::io::Cursor;
 use image::{DynamicImage, GenericImageView};
@@ -112,63 +109,6 @@ pub fn download_images(image_list: Vec<String>) -> Result<Vec<Bytes>> {
 
     Ok(image_data)
 }
-
-// /// Download images into system RAM (asynchronously)
-// pub fn download_images(image_list: Vec<String>) -> Result<Vec<Bytes>> {
-//     println!(
-//         "{} Downloading images ...",
-//         style("[3/4]").bold().dim()
-//     );
-
-//     let runtime = Builder::new_multi_thread()
-//         .worker_threads(1)
-//         .enable_all()
-//         .build()
-//         .unwrap();
-
-//     let handle = runtime.spawn(download_wrapper(image_list));
-//     let image_data: Vec<Bytes> = runtime
-//             .block_on(handle)
-//             .unwrap()?
-//             .lock()
-//             .unwrap()
-//             .clone();
-
-//     Ok(image_data)
-// }
-
-// async fn download_wrapper(paths: Vec<String>) -> Result<Arc<Mutex<Vec<Bytes>>>> {
-//     // Set up a progress bar
-//     let pb = ProgressBar::new(paths.len() as u64);
-//     pb.set_style(ProgressStyle::with_template("{spinner:.green} [{elapsed_precise}] [{wide_bar:.cyan/blue}] {pos}/{len} ({eta})")
-//         .unwrap()
-//         .with_key("eta", |state: &ProgressState, w: &mut dyn std::fmt::Write| write!(w, "{:.1}s", state.eta().as_secs_f64()).unwrap())
-//         .progress_chars("#>-"));
-
-//     let image_data: Arc<Mutex<Vec<Bytes>>> = Arc::new(Mutex::new(Vec::new()));
-
-//     // Async code modified from https://patshaughnessy.net/2020/1/20/downloading-100000-files-using-async-rust
-//     let fetches = futures::stream::iter(
-//     paths.into_iter().map(|path| {
-//         async {
-//             match reqwest::get(path).await {
-//                 Ok(resp) => {
-//                     match resp.bytes().await {
-//                         Ok(bytes) => {
-//                             image_data.lock().unwrap().push(bytes);
-//                             pb.inc(1);
-//                         }
-//                         Err(_) => println!("ERROR reading"),
-//                     }
-//                 }
-//                 Err(_) => println!("ERROR downloading"),
-//             }
-//         }
-//     })
-//     ).buffered(4).collect::<Vec<()>>();
-//     fetches.await;
-//     Ok(image_data)
-// }
 
 /// Compile a GIF from the provided vec of bytes with a given framerate
 pub fn compile_gif(image_data: Vec<Bytes>, arguments: &ArgMatches) -> Result<()> {
