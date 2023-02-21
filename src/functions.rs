@@ -179,12 +179,11 @@ fn get_img_vec(data: DynamicImage) -> ImgVec<RGBA8> {
         data
             .pixels()
             .fold(Vec::<RGBA8>::new(), |mut rgba8, rgba| {
-                let alpha = 255;
                 rgba8.extend(vec![RGBA8 {
                     r: rgba.2[0],
                     g: rgba.2[1],
-                    b: rgba.2[3],
-                    a: alpha,
+                    b: rgba.2[2],
+                    a: rgba.2[3],
                 }]);
                 rgba8
             }),
