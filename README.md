@@ -29,7 +29,7 @@ OPTIONS:
     -o, --output <OUT>    Folder and/or file to write the output to
     -d, --sol <SOL>       Retrieve images from a specific Sol (defaults to latest)
 ```
-For example, to compile a gif of the sol 403 flight, 
+For example, to compile a gif of the sol 403 flight, with output file `sol-403.gif` and framerate of 7,
 
 ```
 ingenuity-dl -d 403 -o sol-403.gif -f 7
