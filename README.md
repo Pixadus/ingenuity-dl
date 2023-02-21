@@ -2,7 +2,7 @@
 > Automatically download images from the Mars Ingenuity helicopter and compile them into a video.
 
 <p align="center">
-<img align="center" src="docs/sol-403.gif">
+<img align="center" src="https://github.com/Pixadus/ingenuity-dl/raw/main/docs/sol-403.gif">
 </p>
 <p align="center">
 <em>gif of the sol 403 flight</em>
